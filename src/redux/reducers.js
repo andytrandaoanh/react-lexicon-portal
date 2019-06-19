@@ -4,12 +4,11 @@ import { DATA_LOADED } from "./action_types";
 
 
 const initialState = {
-  examples: [],
-  searches: []
+    searches: []
 };
 function rootReducer(state = initialState, action) {
   if (action.type === SEARCH_WORD) {
-    //console.log(action);
+    console.log(action.payload);
     return Object.assign({}, state, {
       searches: state.searches.concat(action.payload)
     });

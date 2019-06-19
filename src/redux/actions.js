@@ -4,16 +4,13 @@ import { SEARCH_WORD } from "./action_types";
 import { DATA_LOADED } from "./action_types";
 
 
-export function searchWord(searchKey) {
-  return function(dispatch) {
-  	const url = "http://localhost:5000/query/" + searchKey;
-    return fetch(url)
-      .then(response => response.json())
-      .then(json => {
-        dispatch({ type: SEARCH_WORD, payload: {"searchKey" : searchKey, "searchResults": json }});
-      });
-  };
+
+export function searchWord(payload) {
+  return { type: SEARCH_WORD, payload };
 }
+
+
+
 
 export function getData() {
   return function(dispatch) {

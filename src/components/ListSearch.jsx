@@ -10,19 +10,59 @@ function mapStateToProps(state) {
 }
 
 
+class CListSearch extends React.Component {
+ 	constructor(props) {
+      super(props);
+     
+      this.state = {
+      	 searches: this.props.searches,
+         isLoaded: false,
+         items: [],
+         error: null
+      };
+     }
 
-const ConnectedList = ({ searches }) => (
-  
-  <ul className="list-group list-group-flush">
-    {
+  componentDidMount(){
+  	 const dataURL = "http://localhost:5000/query/act%';"
 
-    	searches.map((search, index) => (
-      <li className="list-group-item" key={index}>
-        {search.searchKey}
-      </li>
-    ))}
-  </ul>
+    fetch(dataURL)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            items: result
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error: error
+          });
+        }
+      )
+
+  }
+
+  render() {
+  	
+  	const { isLoaded, items } = this.state;
   
-);
-const ListSearch = connect(mapStateToProps)(ConnectedList);
+    return (
+			<div>
+              {items.map((item, index) => (
+                <button key={index} className="btn" value={item.word_form} onClick={this.onLinkClick}>
+                  {item.word_form}
+                </button>
+               ))}
+            </div>
+    )
+  }
+}
+
+
+const ListSearch = connect(mapStateToProps)(CListSearch);
 export default ListSearch;
