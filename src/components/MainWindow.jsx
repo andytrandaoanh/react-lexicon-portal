@@ -24,10 +24,11 @@ class MainWindow extends React.Component {
         <div className="row content">
           <div className="col-sm-3 sidenav">
             <h2><small>Search Lexicon</small></h2>
-            <SearchForm />
-
+            
+              search
             <div>
-              <ListSearch />
+               result
+              
             </div>
     
           </div>

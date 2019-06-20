@@ -1,7 +1,7 @@
 import React from 'react';
-import './style.css';
-import TopNavigation from './components/TopNavigation.jsx';
-import MainWindow from './components/MainWindow.jsx';
+import '../style.css';
+import TopNavigation from './TopNavigation.jsx';
+import MainWindow from './MainWindow.jsx';
 
 
 
